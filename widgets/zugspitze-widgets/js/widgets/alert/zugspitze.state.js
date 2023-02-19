@@ -25,7 +25,11 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
             vis.states.bind(data.oid + '.val', function (e, newVal) {
                 checkValue($this, newVal);
-            })
+            });
+
+            $('body').bind('rendered', function() {
+                checkValue(data.oid + '.val', vis.states[stateVal]);    
+            });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
