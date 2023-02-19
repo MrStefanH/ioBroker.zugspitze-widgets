@@ -95,7 +95,21 @@ vis.binds["zugspitze-widgets"].helper = {
 
         return parentId;
     },
-    extractHtmlWidgetData(el, widgetData, parentId, callback) {
+    getBooleanFromData: function (dataValue, nullValue) {
+        try {
+            if (dataValue === undefined || dataValue === null || dataValue === '') {
+                return nullValue;
+            } else if (dataValue === true || dataValue === 'true' || dataValue === 1 || dataValue === '1') {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (err) {
+            console.error(`[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
+            return `[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
+        }
+    },
+    extractHtmlWidgetData(el, widgetData, parentId, widgetName, logPrefix, callback) {
         for (const key of Object.keys(widgetData)) {
             if (key !== "wid") {
                 if (el.attr(`zugspitze-${key}`)) {
@@ -110,6 +124,9 @@ vis.binds["zugspitze-widgets"].helper = {
             }
         }
 
+        widgetData.debug = widgetData.debug === true || widgetData.debug === 'true' ? true : false;
+        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
+
         if (widgetData.oid) {
             let oidsNeedSubscribe = zugspitzeHelper.oidNeedSubscribe(
                 widgetData.oid,
@@ -121,13 +138,16 @@ vis.binds["zugspitze-widgets"].helper = {
                 zugspitzeHelper.subscribeStatesAtRuntime(
                     parentId,
                     function () {
+                        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
                         if (callback) callback(widgetData);
                     }
                 );
             } else {
+                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
                 if (callback) callback(widgetData);
             }
         } else {
+            if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
             if (callback) callback(widgetData);
         }
 

@@ -36,7 +36,8 @@ vis.binds["zugspitze-widgets"].alertstate = {
     },
     getDataFromJson(obj) {
         return {
-            oid: obj.oid
+            oid: obj.oid,
+            debug: obj.debug
         }
     },
     checkValue($element, stateValue, switchState = false) {
@@ -53,23 +54,30 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
 $.initialize(".zugspitze-alert-state-html-element", function () {
     let $this = $(this);
+    let debug = zugspitzeHelper.getBooleanFromData($this.attr('zugspitze-debug'), false);
     let parentId = "unknown";
+    let logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        let widgetName = `Value HTML Element`;
+        let widgetName = `Alert State HTML Element`;
         parentId = zugspitzeHelper.getHtmlParentId($this);
+        logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
 
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}),
+            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}, parentId),
             parentId,
+            widgetName,
+            logPrefix,
             initializeHtml
         );
 
         function initializeHtml(widgetData) {
+            if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
             vis.binds["zugspitze-widgets"].alertstate.initialize($this, widgetData);
         }
     } catch (ex) {
+        console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
         $this.append(
             `<div style = "background: FireBrick; color: white;">Error ${ex.message}</div >`
         );
