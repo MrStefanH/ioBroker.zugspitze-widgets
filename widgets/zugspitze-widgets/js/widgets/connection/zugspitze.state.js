@@ -7,7 +7,7 @@
 */
 "use strict";
 
-vis.binds["zugspitze-widgets"].connection.state = {
+vis.binds["zugspitze-widgets"].connectionstate = {
     initialize: async function (el, data) {
         try {
             let $this = $(el);
@@ -88,14 +88,14 @@ $.initialize(".zugspitze-connection-state-html-element", function () {
 
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].connection.state.getDataFromJson({}, parentId),
+            vis.binds["zugspitze-widgets"].connectionstate.getDataFromJson({}, parentId),
             parentId,
             widgetName,
             initializeHtml
         );
 
         function initializeHtml(widgetData) {
-            vis.binds["zugspitze-widgets"].connection.state.initialize($this, widgetData);
+            vis.binds["zugspitze-widgets"].connectionstate.initialize($this, widgetData);
         }
     } catch (ex) {
         $this.append(
