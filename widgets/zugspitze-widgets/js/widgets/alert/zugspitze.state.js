@@ -11,7 +11,8 @@ vis.binds["zugspitze-widgets"].alertstate = {
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
-            debug: obj.debug
+            debug: obj.debug,
+            switchState: obj.switchState
         }
     },
     checkValue($element, stateValue, switchState = false) {
@@ -50,7 +51,7 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].alertstate.checkValue($this, newVal);
+                vis.binds["zugspitze-widgets"].alertstate.checkValue($this, newVal, data.switchState);
             }
             
             vis.states.bind(data.oid + '.val', onChange);
