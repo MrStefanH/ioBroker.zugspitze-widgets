@@ -1,7 +1,7 @@
 /*
     ioBroker.vis zugspitze-widgets Widget-Set
 
-    version: "0.0.1"
+    version: "0.0.2"
 
     Copyright 2023 MonkeyParson pfaffe.st@gmail.com
 */
@@ -9,17 +9,22 @@
 
 vis.binds.zugspitze.connection.state = {
     initialize: async function (el, data) {
-        $this.html(`
-            <div class="ml-auto mb-0 materialdesign-value-html-element"
-                mdw-debug='false'
-                data-oid='${data.oid}'
-                mdw-oid='${data.oid}'
-                mdw-targetType='auto'
-                mdw-textAlign='start'
-                mdw-textOnTrue='OK'
-                mdw-textOnFalse='FEHLER'
-            ></div>
-        `);
+        try {
+            let $this = $(el);
+            $this.html(`
+                <div class="ml-auto mb-0 materialdesign-value-html-element"
+                    mdw-debug='false'
+                    data-oid='${data.oid}'
+                    mdw-oid='${data.oid}'
+                    mdw-targetType='auto'
+                    mdw-textAlign='start'
+                    mdw-textOnTrue='OK'
+                    mdw-textOnFalse='FEHLER'
+                ></div>
+            `);
+        } catch (ex) {
+            console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
     },
     getDataFromJson(obj, widgetId) {
         return {
