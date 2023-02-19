@@ -36,7 +36,7 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
             if (!$this.length) {
                 return setTimeout(function () {
-                    vis.binds["zugspitze-widgets"].alertstate.createWidget(widgetID, view, data, style);
+                    vis.binds["zugspitze-widgets"].alertstate.createWidget(el, data);
                 }, 100);
             }
 
@@ -58,9 +58,9 @@ vis.binds["zugspitze-widgets"].alertstate = {
             
             vis.states.bind(data.oid + '.val', onChange);
             //remember bound state that vis can release if didnt needed
-			$div.data('bound', [data.oid + '.val']);
+			$this.data('bound', [data.oid + '.val']);
 			//remember onchange handler to release bound states
-			$div.data('bindHandler', onChange);
+			$this.data('bindHandler', onChange);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
