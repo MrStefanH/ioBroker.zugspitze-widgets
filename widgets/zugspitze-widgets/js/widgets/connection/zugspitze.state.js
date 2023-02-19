@@ -1,7 +1,7 @@
 /*
     ioBroker.vis zugspitze-widgets Widget-Set
 
-    version: "0.0.2"
+    version: "0.0.3"
 
     Copyright 2023 MonkeyParson pfaffe.st@gmail.com
 */
@@ -75,8 +75,8 @@ vis.binds.zugspitze.connection.state = {
             effectFontSize: obj.effectFontSize,
             effectDuration: obj.effectDuration
         }
-    },
-};
+    }
+}
 
 $.initialize(".zugspitze-connection-state-html-element", function () {
     let $this = $(this);
