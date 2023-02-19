@@ -28,7 +28,7 @@ vis.binds["zugspitze-widgets"].alertstate = {
             });
 
             $('body').bind('rendered', function() {
-                checkValue(data.oid + '.val', vis.states[stateVal]);    
+                checkValue($this, vis.states[data.oid + '.val']);    
             });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
