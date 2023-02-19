@@ -111,14 +111,14 @@ vis.binds["zugspitze-widgets"].helper = {
         }
 
         if (widgetData.oid) {
-            let oidsNeedSubscribe = zuspitzeHelper.oidNeedSubscribe(
+            let oidsNeedSubscribe = zugspitzeHelper.oidNeedSubscribe(
                 widgetData.oid,
                 parentId,
                 false
             );
 
             if (widgetData["oid-working"]) {
-                oidsNeedSubscribe = zuspitzeHelper.oidNeedSubscribe(
+                oidsNeedSubscribe = zugspitzeHelper.oidNeedSubscribe(
                     widgetData["oid-working"],
                     parentId,
                     false
@@ -126,7 +126,7 @@ vis.binds["zugspitze-widgets"].helper = {
             }
 
             if (oidsNeedSubscribe) {
-                zuspitzeHelper.subscribeStatesAtRuntime(
+                zugspitzeHelper.subscribeStatesAtRuntime(
                     parentId,
                     function () {
                         if (callback) callback(widgetData);
@@ -149,4 +149,4 @@ vis.binds["zugspitze-widgets"].helper = {
     }
 };
 
-let zuspitzeHelper = vis.binds["zugspitze-widgets"].helper;
+let zugspitzeHelper = vis.binds["zugspitze-widgets"].helper;
