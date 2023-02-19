@@ -127,29 +127,7 @@ vis.binds["zugspitze-widgets"].helper = {
         widgetData.debug = widgetData.debug === true || widgetData.debug === 'true' ? true : false;
         if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] widgetData: ${JSON.stringify(widgetData)} `);
 
-        if (widgetData.oid) {
-            let oidsNeedSubscribe = zugspitzeHelper.oidNeedSubscribe(
-                widgetData.oid,
-                parentId,
-                false
-            );
-
-            if (oidsNeedSubscribe) {
-                zugspitzeHelper.subscribeStatesAtRuntime(
-                    parentId,
-                    function () {
-                        if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] oid subscribed -> fire callback()`);
-                        if (callback) callback(widgetData);
-                    }
-                );
-            } else {
-                if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] nothing to subscribed -> fire callback()`);
-                if (callback) callback(widgetData);
-            }
-        } else {
-            if (widgetData.debug) console.log(`${logPrefix} [extractHtmlWidgetData] no oid exist, nothing to subscribed -> fire callback()`);
-            if (callback) callback(widgetData);
-        }
+        if (callback) callback(widgetData);
 
         function formatTypeOfValue(value) {
             if (value.toLowerCase() === "true" || value.toLowerCase() === "false") {
