@@ -22,6 +22,10 @@ vis.binds["zugspitze-widgets"].alertstate = {
                     mdw-textOnFalse='FEHLER'
                 ></div>
             `);
+
+            vis.states.bind(data.oid + '.val', function (e, newVal) {
+                checkValue($this, newVal);
+            })
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -30,6 +34,16 @@ vis.binds["zugspitze-widgets"].alertstate = {
         return {
             oid: obj.oid
         }
+    },
+    checkValue($element, stateValue, switchState = false) {
+        stateValue = switchState ? !stateValue : stateValue;
+        if (stateValue) {
+            $element.removeClass('text-danger');
+            return $element.addClass('text-success');
+        }
+        
+        $element.addClass('text-danger');
+        return $element.removeClass('text-success');
     }
 }
 
