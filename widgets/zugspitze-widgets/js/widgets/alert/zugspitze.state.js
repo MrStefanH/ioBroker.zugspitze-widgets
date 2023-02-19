@@ -12,7 +12,9 @@ vis.binds["zugspitze-widgets"].alertstate = {
         return {
             oid: obj.oid,
             debug: obj.debug,
-            switchState: obj.switchState
+            switchState: obj.switchState,
+            textOnTrue: obj.textOnTrue,
+            textOnFalse: obj.textOnFalse
         }
     },
     checkValue($element, stateValue, switchState = false) {
@@ -44,8 +46,8 @@ vis.binds["zugspitze-widgets"].alertstate = {
                     mdw-oid='${data.oid}'
                     mdw-targetType='auto'
                     mdw-textAlign='start'
-                    mdw-textOnTrue='OK'
-                    mdw-textOnFalse='FEHLER'
+                    mdw-textOnTrue='${data.textOnTrue}'
+                    mdw-textOnFalse='${data.textOnFalse}'
                 ></div>
             `);
 
@@ -72,7 +74,12 @@ $.initialize(".zugspitze-alert-state-html-element", function () {
     try {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}),
+            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({
+                debug: false,
+                switchState: false,
+                textOnTrue: 'OK',
+                textOnFalse: 'FEHLER'
+            }),
             logPrefix,
             initializeHtml
         );
