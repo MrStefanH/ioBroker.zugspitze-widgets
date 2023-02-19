@@ -17,7 +17,7 @@ vis.binds["zugspitze-widgets"].helper = {
                 } else if (el.attr(`zugspitze-${key.toLowerCase()}`)) {
                     widgetData[key] = el.attr(`zugspitze-${key.toLowerCase()}`);
                     widgetData[key] = formatTypeOfValue(widgetData[key]);
-                } else {
+                } else if (widgetData[key] === undefined || widgetData[key] === null) {
                     delete widgetData[key];
                 }
             }
