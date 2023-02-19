@@ -9,12 +9,14 @@
 
 vis.binds["zugspitze-widgets"].alertstate = {
     initialize: async function (el, data) {
+        let widgetName = 'Alert State';
+        let logPrefix = `[Alert State - ${data.wid}] initialize:`;
+
         try {
             let $this = $(el);
             $this.html(`
                 <div class="ml-auto mb-0 materialdesign-value-html-element"
-                    mdw-debug='false'
-                    data-oid='${data.oid}'
+                    mdw-debug='${data.debug}'
                     mdw-oid='${data.oid}'
                     mdw-targetType='auto'
                     mdw-textAlign='start'
@@ -24,10 +26,12 @@ vis.binds["zugspitze-widgets"].alertstate = {
             `);
 
             vis.states.bind(data.oid + '.val', function (e, newVal) {
+                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
                 checkValue($this, newVal);
             });
 
             $('body').bind('rendered', function() {
+                if (data.debug) console.log(`${logPrefix} [initialize] check value after body was rendered`);
                 checkValue($this, vis.states[data.oid + '.val']);    
             });
         } catch (ex) {
