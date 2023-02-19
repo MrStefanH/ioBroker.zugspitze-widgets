@@ -29,11 +29,6 @@ vis.binds["zugspitze-widgets"].alertstate = {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
                 checkValue($this, newVal);
             });
-
-            $('body').bind('rendered', function() {
-                if (data.debug) console.log(`${logPrefix} [initialize] check value after body was rendered`);
-                checkValue($this, vis.states[data.oid + '.val']);    
-            });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -53,7 +48,45 @@ vis.binds["zugspitze-widgets"].alertstate = {
         
         $element.addClass('text-danger');
         return $element.removeClass('text-success');
-    }
+    },
+    createWidget: function (el, data) {
+        let widgetName = 'Alert State';
+        let logPrefix = `[Alert State - ${data.wid}] initialize:`;
+
+        try {
+            let $this = $(el);
+
+            if (!$this.length) {
+                return setTimeout(function () {
+                    vis.binds["zugspitze-widgets"].alertstate.createWidget(widgetID, view, data, style);
+                }, 100);
+            }
+
+            $this.html(`
+                <div class="ml-auto mb-0 materialdesign-value-html-element"
+                    mdw-debug='${data.debug}'
+                    mdw-oid='${data.oid}'
+                    mdw-targetType='auto'
+                    mdw-textAlign='start'
+                    mdw-textOnTrue='OK'
+                    mdw-textOnFalse='FEHLER'
+                ></div>
+            `);
+
+            function onChange(e, newVal, oldVal) {
+                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
+                checkValue($this, newVal);
+            }
+            
+            vis.states.bind(data.oid + '.val', onChange);
+            //remember bound state that vis can release if didnt needed
+			$div.data('bound', [data.oid + '.val']);
+			//remember onchange handler to release bound states
+			$div.data('bindHandler', onChange);
+        } catch (ex) {
+            console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
+        }
+	}
 }
 
 $.initialize(".zugspitze-alert-state-html-element", function () {
@@ -63,22 +96,19 @@ $.initialize(".zugspitze-alert-state-html-element", function () {
     let logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        let widgetName = `Alert State HTML Element`;
         parentId = zugspitzeHelper.getHtmlParentId($this);
         logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
 
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}, parentId),
-            parentId,
-            widgetName,
+            vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}),
             logPrefix,
             initializeHtml
         );
 
         function initializeHtml(widgetData) {
             if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
-            vis.binds["zugspitze-widgets"].alertstate.initialize($this, widgetData);
+            vis.binds["zugspitze-widgets"].alertstate.createWidget($this, widgetData);
         }
     } catch (ex) {
         console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
