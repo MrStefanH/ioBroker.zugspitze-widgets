@@ -2,3 +2,7 @@
 .zugspitze-widgets-class {
     font-style: italic;
 }
+
+.zugspitze-connection-state-html-element {
+    display: flex;
+}
