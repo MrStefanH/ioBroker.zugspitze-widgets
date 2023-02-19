@@ -67,6 +67,7 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
 $.initialize(".zugspitze-alert-state-html-element", function () {
     let $this = $(this);
+    let logPrefix = `[Alert State HTML Element]`;
 
     try {
         zugspitzeHelper.extractHtmlWidgetData(
