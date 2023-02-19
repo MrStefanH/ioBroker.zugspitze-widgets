@@ -1,0 +1,82 @@
+{
+    "common": {
+        "name": "zugspitze-widgets",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "Zugspitze Widgets",
+        "titleLang": {
+            "en": "Zugspitze Widgets",
+            "de": "Zugspitze-Widgets",
+            "ru": "Виджеты Цугшпитце",
+            "pt": "Zugspitze Widgets",
+            "nl": "Zugspitze-widgets",
+            "fr": "Widgets de la Zugspitze",
+            "it": "Zugspitze Widget",
+            "es": "Widgets Zugspitze",
+            "pl": "Widżety Zugspitze",
+            "zh-cn": "楚格峰小部件"
+        },
+        "desc": {
+            "en": "Provides some widgets for personal use extending material design widgets",
+            "de": "Bietet einige Widgets für den persönlichen Gebrauch, die Materialdesign-Widgets erweitern",
+            "ru": "Предоставляет некоторые виджеты для личного использования, расширяя виджеты материального дизайна.",
+            "pt": "Fornece alguns widgets para uso pessoal, estendendo widgets de design de material",
+            "nl": "Biedt een aantal widgets voor persoonlijk gebruik die widgets voor materiaalontwerp uitbreiden",
+            "fr": "Fournit des widgets pour un usage personnel étendant les widgets de conception de matériaux",
+            "it": "Fornisce alcuni widget per uso personale che estendono i widget di material design",
+            "es": "Proporciona algunos widgets para uso personal que amplían los widgets de diseño de materiales.",
+            "pl": "Udostępnia kilka widżetów do użytku osobistego, rozszerzających widżety projektowania materiałów",
+            "zh-cn": "提供一些供个人使用的小部件扩展材料设计小部件"
+        },
+        "authors": [
+            "MonkeyParson <pfaffe.st@gmail.com>"
+        ],
+        "keywords": [
+            "iobroker",
+            "vis",
+            "widgets",
+            "material",
+            "design",
+            "zugspitze"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "zugspitze-widgets.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/MrStefanH/ioBroker.zugspitze-widgets/main/admin/zugspitze-widgets.png",
+        "readme": "https://github.com/MrStefanH/ioBroker.zugspitze-widgets/blob/main/README.md",
+        "loglevel": "info",
+        "restartAdapters": [
+            "vis"
+        ],
+        "onlyWWW": true,
+        "noConfig": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "mode": "once",
+        "dependencies": [
+            "vis"
+        ],
+        "globalDependencies": []
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
