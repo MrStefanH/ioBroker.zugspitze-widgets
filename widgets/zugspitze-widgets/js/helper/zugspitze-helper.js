@@ -95,7 +95,7 @@ vis.binds["zugspitze-widgets"].helper = {
 
         return parentId;
     },
-    extractHtmlWidgetData(el, widgetData, parentId, widgetName, callback) {
+    extractHtmlWidgetData(el, widgetData, parentId, callback) {
         for (const key of Object.keys(widgetData)) {
             if (key !== "wid") {
                 if (el.attr(`zugspitze-${key}`)) {
@@ -116,14 +116,6 @@ vis.binds["zugspitze-widgets"].helper = {
                 parentId,
                 false
             );
-
-            if (widgetData["oid-working"]) {
-                oidsNeedSubscribe = zugspitzeHelper.oidNeedSubscribe(
-                    widgetData["oid-working"],
-                    parentId,
-                    false
-                );
-            }
 
             if (oidsNeedSubscribe) {
                 zugspitzeHelper.subscribeStatesAtRuntime(

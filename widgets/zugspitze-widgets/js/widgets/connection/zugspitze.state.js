@@ -26,54 +26,9 @@ vis.binds["zugspitze-widgets"].connectionstate = {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
     },
-    getDataFromJson(obj, widgetId) {
+    getDataFromJson(obj) {
         return {
-            wid: widgetId,
-
-            // Common
-            oid: obj.oid,
-            targetType: obj.targetType,
-            overrideText: obj.overrideText,
-            debug: obj.debug,
-
-            // layout
-            textAlign: obj.textAlign,
-            valueLabelWidth: obj.valueLabelWidth,
-            valuesFontColor: obj.valuesFontColor,
-            valuesFontFamily: obj.valuesFontFamily,
-            valuesFontSize: obj.valuesFontSize,
-            prepandText: obj.prepandText,
-            prepandTextColor: obj.prepandTextColor,
-            prepandTextFontFamily: obj.prepandTextFontFamily,
-            prepandTextFontSize: obj.prepandTextFontSize,
-            appendText: obj.appendText,
-            appendTextColor: obj.appendTextColor,
-            appendTextFontFamily: obj.appendTextFontFamily,
-            appendTextFontSize: obj.appendTextFontSize,
-
-            // number formatting
-            valueLabelUnit: obj.valueLabelUnit,
-            minDecimals: obj.minDecimals,
-            maxDecimals: obj.maxDecimals,
-            calculate: obj.calculate,
-            convertToDuration: obj.convertToDuration,
-
-            // boolean formatting
-            textOnTrue: obj.textOnTrue,
-            textOnFalse: obj.textOnFalse,
-            condition: obj.condition,
-
-            // icon
-            image: obj.image,
-            imageColor: obj.imageColor,
-            iconPosition: obj.iconPosition,
-            iconHeight: obj.iconHeight,
-
-            // value change effect
-            changeEffectEnabled: obj.changeEffectEnabled,
-            effectFontColor: obj.effectFontColor,
-            effectFontSize: obj.effectFontSize,
-            effectDuration: obj.effectDuration
+            oid: obj.oid
         }
     }
 }
@@ -88,9 +43,8 @@ $.initialize(".zugspitze-connection-state-html-element", function () {
 
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].connectionstate.getDataFromJson({}, parentId),
+            vis.binds["zugspitze-widgets"].connectionstate.getDataFromJson({}),
             parentId,
-            widgetName,
             initializeHtml
         );
 
