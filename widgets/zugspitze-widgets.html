@@ -114,5 +114,5 @@
         data-vis-name="Alert State"
         data-vis-attrs="oid/id;">
 
-        <div class="vis-widget zugspitze-widget zugspitze-alert-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertstate.initialize(el, data) %>></div>
+        <div class="vis-widget zugspitze-widget zugspitze-alert-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertstate.createWidget(el, this.data) %>></div>
 </script>

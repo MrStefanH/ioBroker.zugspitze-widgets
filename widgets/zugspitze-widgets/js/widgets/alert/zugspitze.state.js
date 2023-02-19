@@ -8,31 +8,6 @@
 "use strict";
 
 vis.binds["zugspitze-widgets"].alertstate = {
-    initialize: async function (el, data) {
-        let widgetName = 'Alert State';
-        let logPrefix = `[Alert State - ${data.wid}] initialize:`;
-
-        try {
-            let $this = $(el);
-            $this.html(`
-                <div class="ml-auto mb-0 materialdesign-value-html-element"
-                    mdw-debug='${data.debug}'
-                    mdw-oid='${data.oid}'
-                    mdw-targetType='auto'
-                    mdw-textAlign='start'
-                    mdw-textOnTrue='OK'
-                    mdw-textOnFalse='FEHLER'
-                ></div>
-            `);
-
-            vis.states.bind(data.oid + '.val', function (e, newVal) {
-                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].alertstate.checkValue($this, newVal);
-            });
-        } catch (ex) {
-            console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
-        }
-    },
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
@@ -91,14 +66,8 @@ vis.binds["zugspitze-widgets"].alertstate = {
 
 $.initialize(".zugspitze-alert-state-html-element", function () {
     let $this = $(this);
-    let debug = zugspitzeHelper.getBooleanFromData($this.attr('zugspitze-debug'), false);
-    let parentId = "unknown";
-    let logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
 
     try {
-        parentId = zugspitzeHelper.getHtmlParentId($this);
-        logPrefix = `[Alert State HTML Element - ${parentId.replace('w', 'p')}]`;
-
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
             vis.binds["zugspitze-widgets"].alertstate.getDataFromJson({}),

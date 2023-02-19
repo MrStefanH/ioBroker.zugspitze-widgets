@@ -8,31 +8,6 @@
 "use strict";
 
 vis.binds["zugspitze-widgets"].helper = {
-    getHtmlParentId(el) {
-        let parentId = "unknown";
-        let $parent = el.closest(".vis-widget[id^=w]");
-        parentId = $parent.attr("id");
-        if (!parentId) {
-            // Fallback if no parent id is found (e.g. MDW Dialog)
-            parentId = Object.keys(vis.widgets)[0];
-        }
-
-        return parentId;
-    },
-    getBooleanFromData: function (dataValue, nullValue) {
-        try {
-            if (dataValue === undefined || dataValue === null || dataValue === '') {
-                return nullValue;
-            } else if (dataValue === true || dataValue === 'true' || dataValue === 1 || dataValue === '1') {
-                return true;
-            } else {
-                return false;
-            }
-        } catch (err) {
-            console.error(`[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`);
-            return `[Helper] getBooleanFromData: val: ${dataValue} error: ${err.message}, stack: ${err.stack}`;
-        }
-    },
     extractHtmlWidgetData(el, widgetData, logPrefix, callback) {
         for (const key of Object.keys(widgetData)) {
             if (key !== "wid") {
