@@ -1,7 +1,7 @@
 /*
     ioBroker.vis zugspitze-widgets Widget-Set
 
-    version: "0.0.14"
+    version: "0.0.15"
 
     Copyright 2023 MonkeyParson pfaffe.st@gmail.com
 */
