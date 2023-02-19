@@ -113,5 +113,5 @@
         data-vis-name="Connection State"
         data-vis-attrs="oid/id;">
 
-        <div class="vis-widget zugspitze-widget zugspitze-connection-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds.zugspitze.connectionstate.initialize(el, data) %>></div>
+        <div class="vis-widget zugspitze-widget zugspitze-connection-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].connection.state.initialize(el, data) %>></div>
 </script>

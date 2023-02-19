@@ -7,7 +7,7 @@
 */
 "use strict";
 
-vis.binds.zugspitze.helper = {
+vis.binds["zugspitze-widgets"].helper = {
     getViewOfWidget(wid) {
         for (var view in vis.views) {
             if (vis.views[view].widgets && vis.views[view].widgets[wid]) {
@@ -16,7 +16,7 @@ vis.binds.zugspitze.helper = {
         }
     },
     subscribeStatesAtRuntime(wid, callback) {
-        let view = vis.binds.materialdesign.helper.getViewOfWidget(wid);
+        let view = vis.binds["zugspitze-widgets"].helper.getViewOfWidget(wid);
 
         if (!view || vis.editMode) {
             if (callback) callback();
@@ -63,7 +63,7 @@ vis.binds.zugspitze.helper = {
         wid,
         oidNeedSubscribe,
     ) {
-        let view = vis.binds.zugspitze.helper.getViewOfWidget(wid);
+        let view = vis.binds["zugspitze-widgets"].helper.getViewOfWidget(wid);
 
         if (oid !== undefined) {
             // Check if Oid is subscribed and put to vis subscribing object
@@ -149,4 +149,4 @@ vis.binds.zugspitze.helper = {
     }
 };
 
-let zuspitzeHelper = vis.binds.materialdesign.helper;
+let zuspitzeHelper = vis.binds["zugspitze-widgets"].helper;
