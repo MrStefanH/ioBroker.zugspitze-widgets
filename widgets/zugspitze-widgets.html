@@ -15,6 +15,7 @@
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/helper/zugspitze-helper.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/alert/zugspitze.state.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/alert/list/zugspitze.item.js"></script>
+<script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/temperature/zugspitze.state.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -106,7 +107,7 @@
 
 -->
 
-<script id="tplZugspitze-widgets-value"
+<script id="tplZugspitze-widgets-alert-state"
         type="text/ejs"
         class="vis-tpl"
         data-vis-prev=''
@@ -118,7 +119,7 @@
         <div class="vis-widget zugspitze-widget zugspitze-alert-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertstate.createWidget(el, this.data) %>></div>
 </script>
 
-<script id="tplZugspitze-widgets-list-item"
+<script id="tplZugspitze-widgets-alert-list-item"
         type="text/ejs"
         class="vis-tpl"
         data-vis-prev=''
@@ -127,5 +128,17 @@
         data-vis-name="List Item"
         data-vis-attrs="oid/id;label/string;">
 
-        <div class="vis-widget zugspitze-widget zugspitze-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertlistitem.createWidget(el, this.data) %>></div>
+        <div class="vis-widget zugspitze-widget zugspitze-alert-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertlistitem.createWidget(el, this.data) %>></div>
+</script>
+
+<script id="tplZugspitze-widgets-temperature-state"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev=''
+        data-vis-set="zugspitze-widgets"
+        data-vis-type="val,state,string,number,bool,basic"
+        data-vis-name="Temperature State"
+        data-vis-attrs="oid/id;">
+
+        <div class="vis-widget zugspitze-widget zugspitze-temperature-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].temperaturestate.createWidget(el, this.data) %>></div>
 </script>
