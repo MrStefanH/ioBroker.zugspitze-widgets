@@ -6,3 +6,21 @@
 .zugspitze-alert-state-html-element {
     display: flex;
 }
+
+.list-group-item.active {
+    z-index: inherit;
+    border-width: 1px 0 0 0;
+}
+
+.list-group-item {
+    display: flex !important;
+    border-width: 1px 0 0 0;
+    padding: 0.75rem 1.25rem !important;
+    color: #536373 !important;
+}
+
+[data-unit] .specs {
+    margin-bottom: 0;
+    text-align: left;
+    color: rgba(83,99,115,.5);
+}
