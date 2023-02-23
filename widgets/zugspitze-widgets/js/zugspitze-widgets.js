@@ -1,7 +1,7 @@
 /*
     ioBroker.vis zugspitze-widgets Widget-Set
 
-    version: "0.0.25"
+    version: "0.0.26"
 
     Copyright 2023 MonkeyParson pfaffe.st@gmail.com
 */
@@ -32,7 +32,7 @@ $.extend(
 
 // this code can be placed directly in zugspitze-widgets.html
 vis.binds["zugspitze-widgets"] = {
-    version: "0.0.25",
+    version: "0.0.26",
     showVersion: function () {
         if (vis.binds["zugspitze-widgets"].version) {
             console.log('Version zugspitze-widgets: ' + vis.binds["zugspitze-widgets"].version);
