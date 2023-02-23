@@ -37,6 +37,9 @@ vis.binds["zugspitze-widgets"].alertlistitem = {
                     <div class="ml-auto zugspitze-alert-state-html-element"
                         zugspitze-oid='${data.oid}'
                         zugspitze-debug='${data.debug}'
+                        zugspitze-switchState='${data.switchState}'
+                        zugspitze-textOnTrue='${data.textOnTrue}'
+                        zugspitze-textOnFalse='${data.textOnFalse}'
                     ></div>
                 </li>
             `);
