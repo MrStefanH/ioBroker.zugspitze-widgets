@@ -14,7 +14,7 @@
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/zugspitze-widgets.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/helper/zugspitze-helper.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/alert/zugspitze.state.js"></script>
-<script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/list/zugspitze.item.js"></script>
+<script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/alert/list/zugspitze.item.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -127,5 +127,5 @@
         data-vis-name="List Item"
         data-vis-attrs="oid/id;label/string;">
 
-        <div class="vis-widget zugspitze-widget zugspitze-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].listitem.createWidget(el, this.data) %>></div>
+        <div class="vis-widget zugspitze-widget zugspitze-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].alertlistitem.createWidget(el, this.data) %>></div>
 </script>

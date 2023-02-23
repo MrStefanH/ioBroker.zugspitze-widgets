@@ -7,12 +7,15 @@
 */
 "use strict";
 
-vis.binds["zugspitze-widgets"].listitem = {
+vis.binds["zugspitze-widgets"].alertlistitem = {
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
             debug: obj.debug,
-            label: obj.label
+            label: obj.label,
+            switchState: obj.switchState,
+            textOnTrue: obj.textOnTrue,
+            textOnFalse: obj.textOnFalse
         }
     },
     createWidget: function (el, data) {
@@ -24,7 +27,7 @@ vis.binds["zugspitze-widgets"].listitem = {
 
             if (!$this.length) {
                 return setTimeout(function () {
-                    vis.binds["zugspitze-widgets"].listitem.createWidget(el, data);
+                    vis.binds["zugspitze-widgets"].alertlistitem.createWidget(el, data);
                 }, 100);
             }
 
@@ -48,16 +51,19 @@ vis.binds["zugspitze-widgets"].listitem = {
 	}
 }
 
-$.initialize(".zugspitze-list-item-html-element", function () {
+$.initialize(".zugspitze-alert-list-item-html-element", function () {
     let $this = $(this);
     let logPrefix = `[List Item HTML Element]`;
 
     try {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].listitem.getDataFromJson({
+            vis.binds["zugspitze-widgets"].alertlistitem.getDataFromJson({
                 debug: false,
-                label: ''
+                label: '',
+                switchState: false,
+                textOnTrue: 'OK',
+                textOnFalse: 'FEHLER'
             }),
             logPrefix,
             initializeHtml
@@ -65,7 +71,7 @@ $.initialize(".zugspitze-list-item-html-element", function () {
 
         function initializeHtml(widgetData) {
             if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
-            vis.binds["zugspitze-widgets"].listitem.createWidget($this, widgetData);
+            vis.binds["zugspitze-widgets"].alertlistitem.createWidget($this, widgetData);
         }
     } catch (ex) {
         console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
