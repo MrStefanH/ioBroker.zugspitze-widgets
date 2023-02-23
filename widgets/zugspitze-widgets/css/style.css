@@ -3,8 +3,13 @@
     font-style: italic;
 }
 
-.zugspitze-alert-state-html-element {
+.zugspitze-alert-state-html-element,
+.zugspitze-temperature-state-html-element {
     display: flex;
+}
+
+.materialdesign-value.value-text {
+    margin: 0 !important;
 }
 
 .list-group-item.active {

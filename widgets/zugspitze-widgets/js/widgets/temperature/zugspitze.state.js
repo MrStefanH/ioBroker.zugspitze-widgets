@@ -11,8 +11,16 @@ vis.binds["zugspitze-widgets"].temperaturestate = {
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
-            debug: obj.debug
+            debug: obj.debug,
+            refTemperature: obj.refTemperature
         }
+    },
+    checkValue($element, stateValue, refTemperature) {
+        if (stateValue >= refTemperature) {
+            return $element.addClass('text-danger');
+        }
+        
+        return $element.removeClass('text-danger');
     },
     createWidget: function (el, data) {
         let widgetName = 'Temperature State';
@@ -36,6 +44,17 @@ vis.binds["zugspitze-widgets"].temperaturestate = {
                     mdw-valueLabelUnit='°C'
                 ></div>
             `);
+
+            function onChange(e, newVal, oldVal) {
+                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
+                vis.binds["zugspitze-widgets"].temperaturestate.checkValue($this, newVal, data.refTemperature);
+            }
+            
+            vis.states.bind(data.oid + '.val', onChange);
+            //remember bound state that vis can release if didnt needed
+			$this.data('bound', [data.oid + '.val']);
+			//remember onchange handler to release bound states
+			$this.data('bindHandler', onChange);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
@@ -50,7 +69,8 @@ $.initialize(".zugspitze-temperature-state-html-element", function () {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
             vis.binds["zugspitze-widgets"].temperaturestate.getDataFromJson({
-                debug: false
+                debug: false,
+                refTemperature: 80
             }),
             logPrefix,
             initializeHtml

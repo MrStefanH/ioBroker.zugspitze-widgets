@@ -19,8 +19,8 @@ vis.binds["zugspitze-widgets"].alertlistitem = {
         }
     },
     createWidget: function (el, data) {
-        let widgetName = 'List Item';
-        let logPrefix = `[List Item - ${data.wid}] initialize:`;
+        let widgetName = 'Alert List Item';
+        let logPrefix = `[Alert List Item - ${data.wid}] initialize:`;
 
         try {
             let $this = $(el);
@@ -56,7 +56,7 @@ vis.binds["zugspitze-widgets"].alertlistitem = {
 
 $.initialize(".zugspitze-alert-list-item-html-element", function () {
     let $this = $(this);
-    let logPrefix = `[List Item HTML Element]`;
+    let logPrefix = `[Alert List Item HTML Element]`;
 
     try {
         zugspitzeHelper.extractHtmlWidgetData(
