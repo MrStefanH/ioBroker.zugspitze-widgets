@@ -55,7 +55,7 @@ $.initialize(".zugspitze-temperature-list-item-html-element", function () {
             vis.binds["zugspitze-widgets"].temperaturelistitem.getDataFromJson({
                 debug: false,
                 label: '',
-                refTemperature: obj.refTemperature
+                refTemperature: 80
             }),
             logPrefix,
             initializeHtml
