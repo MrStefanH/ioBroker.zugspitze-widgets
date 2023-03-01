@@ -29,3 +29,11 @@
     text-align: left;
     color: rgba(83,99,115,.5);
 }
+
+.zugspitze-type-shelly-state-html-element {
+    text-align: right;
+}
+
+.zugspitze-type-shelly-state-html-element .materialdesign-value-html-element {
+    font-size: small;
+}
