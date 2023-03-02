@@ -40,8 +40,3 @@
     font-size: small;
     opacity: 75%;
 }
-
-.zugspitze-type-shelly-list-item-html-element p {
-    display: flex;
-    align-items: center;   
-}
