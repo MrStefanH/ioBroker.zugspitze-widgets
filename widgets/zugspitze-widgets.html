@@ -182,3 +182,15 @@
 
         <div class="vis-widget zugspitze-widget zugspitze-type-shelly-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].typeshellylistitem.createWidget(el, this.data) %>></div>
 </script>
+
+<script id="tplZugspitze-widgets-uptime-state"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev=''
+        data-vis-set="zugspitze-widgets"
+        data-vis-type="val,state,string,number,bool,basic"
+        data-vis-name="Uptime State"
+        data-vis-attrs="oid/id;">
+
+        <div class="vis-widget zugspitze-widget zugspitze-uptime-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].uptimestate.createWidget(el, this.data) %>></div>
+</script>
