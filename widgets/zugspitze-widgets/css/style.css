@@ -28,6 +28,8 @@
     margin-bottom: 0;
     text-align: left;
     color: rgba(83,99,115,.5);
+    display: flex;
+    align-items: center;
 }
 
 .zugspitze-type-shelly-state-html-element {
@@ -36,4 +38,10 @@
 
 .zugspitze-type-shelly-state-html-element .materialdesign-value-html-element {
     font-size: small;
+    opacity: 75%;
+}
+
+.zugspitze-type-shelly-list-item-html-element p {
+    display: flex;
+    align-items: center;   
 }

@@ -18,6 +18,7 @@
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/temperature/zugspitze.state.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/temperature/list/zugspitze.item.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/type/shelly/zugspitze.state.js"></script>
+<script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/type/shelly/list/zugspitze.item.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -167,4 +168,16 @@
         data-vis-attrs="oid/id;">
 
         <div class="vis-widget zugspitze-widget zugspitze-type-shelly-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].typeshellystate.createWidget(el, this.data) %>></div>
+</script>
+
+<script id="tplZugspitze-widgets-type-shelly-list-item"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev=''
+        data-vis-set="zugspitze-widgets"
+        data-vis-type="val,state,string,number,bool,basic"
+        data-vis-name="Type Shelly List Item"
+        data-vis-attrs="oid/id;label/string;">
+
+        <div class="vis-widget zugspitze-widget zugspitze-type-shelly-list-item <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].typeshellylistitem.createWidget(el, this.data) %>></div>
 </script>
