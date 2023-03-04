@@ -25,6 +25,7 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                     mdw-value='20'
                     mdw-textAlign='start'
                     mdw-valueLabelUnit='kWh'
+                    mdw-calculate='#value/1000'
                 ></div>
             `);
         }
