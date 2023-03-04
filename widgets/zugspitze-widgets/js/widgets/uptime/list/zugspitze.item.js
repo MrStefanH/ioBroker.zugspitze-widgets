@@ -12,6 +12,7 @@ vis.binds["zugspitze-widgets"].uptimelistitem = {
         return {
             oid: obj.oid,
             debug: obj.debug,
+            label: obj.label,
             durationFormat: obj.durationFormat
         }
     },
@@ -53,6 +54,7 @@ $.initialize(".zugspitze-uptime-list-item-html-element", function () {
             $this,
             vis.binds["zugspitze-widgets"].uptimelistitem.getDataFromJson({
                 debug: false,
+                label: '',
                 durationFormat: 'd [Tage], h [Stunden], m [Minuten]'
             }),
             logPrefix,
