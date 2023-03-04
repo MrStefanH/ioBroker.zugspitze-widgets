@@ -32,7 +32,6 @@ vis.binds["zugspitze-widgets"].uptimestate = {
                 <div class="ml-auto mb-0 materialdesign-value-html-element"
                     mdw-debug='${data.debug}'
                     mdw-oid='${data.oid}'
-                    mdw-convertToDuration
                     mdw-targetType='auto'
                     mdw-textAlign='start'
                     mdw-convertToDuration='${data.durationFormat}'
@@ -52,7 +51,8 @@ $.initialize(".zugspitze-uptime-state-html-element", function () {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
             vis.binds["zugspitze-widgets"].uptimestate.getDataFromJson({
-                debug: false
+                debug: false,
+                durationFormat: 'd [Tage], h [Stunden], m [Minuten]'
             }),
             logPrefix,
             initializeHtml
