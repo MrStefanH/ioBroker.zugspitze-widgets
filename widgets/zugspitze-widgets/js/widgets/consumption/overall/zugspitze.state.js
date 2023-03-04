@@ -15,8 +15,8 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
             refValue: obj.refValue
         }
     },
-    checkValue($element, stateValue, refValue) {
-        if (stateValue > refValue) {
+    checkValue($element, stateValue, data) {
+        if (stateValue > data.refValue) {
             return $element.html(`
                 <div class="ml-auto mb-0 materialdesign-value-html-element"
                     mdw-debug='${data.debug}'
@@ -60,13 +60,13 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                     mdw-targetType='auto'
                     mdw-value='20'
                     mdw-textAlign='start'
-                    mdw-valueLabelUnit='Wh'
+                    mdw-valueLabelUnit='${data.oid}'
                 ></div>
             `);
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].consumptionoverallstate.checkValue($this, newVal, data.refValue);
+                vis.binds["zugspitze-widgets"].consumptionoverallstate.checkValue($this, newVal, data);
             }
             
             vis.states.bind(data.oid + '.val', onChange);
