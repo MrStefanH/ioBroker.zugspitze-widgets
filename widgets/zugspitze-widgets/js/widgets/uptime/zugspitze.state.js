@@ -52,8 +52,7 @@ $.initialize(".zugspitze-uptime-state-html-element", function () {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
             vis.binds["zugspitze-widgets"].uptimestate.getDataFromJson({
-                debug: false,
-                durationFormat: 'd [Tage], h [Stunden], m [Minuten]'
+                debug: false
             }),
             logPrefix,
             initializeHtml
