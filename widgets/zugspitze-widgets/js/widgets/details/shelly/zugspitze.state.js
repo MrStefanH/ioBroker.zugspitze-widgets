@@ -10,6 +10,7 @@
 vis.binds["zugspitze-widgets"].detailsshellystate = {
     getDataFromJson(obj) {
         return {
+            id: obj.id,
             shelly: obj.shelly,
             shellyRelay: obj.shellyRelay,
             nettools: obj.nettools,
@@ -30,7 +31,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
             }
 
             $this.html(`
-                <ul class="list-group borderless px-1 collapse" id="flush-collapse-buero">
+                <ul class="list-group borderless px-1 collapse" id="flush-collapse-${data.id}">
                     <div class="zugspitze-temperature-list-item-html-element"
                         zugspitze-oid='${data.shelly}.temperatureC'
                         zugspitze-label='Temperatur'
