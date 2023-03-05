@@ -22,6 +22,8 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
             let $this = $(el);
             let host = data.host;
             vis.conn.getStates(host, (error, states) => {
+                console.log('HOST: ' + host);
+                console.log('STATES: ' + states);
                 let stateValue = states[host].val;
                 $this.html(`
                     <li class="shelly-admin-link list-group-item pt-0 pb-4">
