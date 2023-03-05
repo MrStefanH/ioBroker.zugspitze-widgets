@@ -7,7 +7,7 @@
 */
 "use strict";
 
-vis.binds["zugspitze-widgets"].consumptionoverallstate = {
+vis.binds["zugspitze-widgets"].consumptioncurrentstate = {
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
@@ -22,9 +22,8 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                     mdw-debug='${data.debug}'
                     mdw-oid='${data.oid}'
                     mdw-targetType='auto'
-                    mdw-value='20'
                     mdw-textAlign='start'
-                    mdw-valueLabelUnit='kWh'
+                    mdw-valueLabelUnit='kW'
                     mdw-calculate='#value/1000'
                 ></div>
             `);
@@ -35,22 +34,21 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                 mdw-debug='${data.debug}'
                 mdw-oid='${data.oid}'
                 mdw-targetType='auto'
-                mdw-value='20'
                 mdw-textAlign='start'
-                mdw-valueLabelUnit='Wh'
+                mdw-valueLabelUnit='W'
             ></div>
         `);
     },
     createWidget: function (el, data) {
-        let widgetName = 'Consumption Overall State';
-        let logPrefix = `[Consumption Overall State - ${data.wid}] initialize:`;
+        let widgetName = 'Consumption Current State';
+        let logPrefix = `[Consumption Current State - ${data.wid}] initialize:`;
 
         try {
             let $this = $(el);
 
             if (!$this.length) {
                 return setTimeout(function () {
-                    vis.binds["zugspitze-widgets"].consumptionoverallstate.createWidget(el, data);
+                    vis.binds["zugspitze-widgets"].consumptioncurrentstate.createWidget(el, data);
                 }, 100);
             }
 
@@ -59,15 +57,14 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                     mdw-debug='${data.debug}'
                     mdw-oid='${data.oid}'
                     mdw-targetType='auto'
-                    mdw-value='20'
                     mdw-textAlign='start'
-                    mdw-valueLabelUnit='Wh'
+                    mdw-valueLabelUnit='W'
                 ></div>
             `);
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].consumptionoverallstate.checkValue($this, newVal, data);
+                vis.binds["zugspitze-widgets"].consumptioncurrentstate.checkValue($this, newVal, data);
             }
             
             vis.states.bind(data.oid + '.val', onChange);
@@ -81,14 +78,14 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
 	}
 }
 
-$.initialize(".zugspitze-consumption-overall-state-html-element", function () {
+$.initialize(".zugspitze-consumption-current-state-html-element", function () {
     let $this = $(this);
-    let logPrefix = `[Consumption Overall State HTML Element]`;
+    let logPrefix = `[Consumption Current State HTML Element]`;
 
     try {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
-            vis.binds["zugspitze-widgets"].consumptionoverallstate.getDataFromJson({
+            vis.binds["zugspitze-widgets"].consumptioncurrentstate.getDataFromJson({
                 debug: false,
                 refValue: 1000
             }),
@@ -98,7 +95,7 @@ $.initialize(".zugspitze-consumption-overall-state-html-element", function () {
 
         function initializeHtml(widgetData) {
             if (widgetData.debug) console.log(`${logPrefix} initialize widget`);
-            vis.binds["zugspitze-widgets"].consumptionoverallstate.createWidget($this, widgetData);
+            vis.binds["zugspitze-widgets"].consumptioncurrentstate.createWidget($this, widgetData);
         }
     } catch (ex) {
         console.error(`${logPrefix} $.initialize: error: ${ex.message}, stack: ${ex.stack} `);
