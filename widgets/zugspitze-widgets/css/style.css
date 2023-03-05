@@ -40,3 +40,9 @@
     font-size: small;
     opacity: 75%;
 }
+
+.shelly-admin-link {
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
