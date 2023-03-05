@@ -20,7 +20,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
     createWidget: function (el, data) {
         let widgetName = 'Details Shelly State';
         let logPrefix = `[Details Shelly State - ${data.wid}] initialize:`;
-        const host = getState(data.shelly + '.hostname').val;
+        const host = vis.conn.getState(data.shelly + '.hostname').val;
 
         try {
             let $this = $(el);
