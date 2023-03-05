@@ -64,7 +64,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                         zugspitze-label='Betriebszeit'
                     ></div>
                     <div class="zugspitze-link-shelly-state-html-element"
-                        zugspitze-host='{${data.shelly}.hostname}'
+                        zugspitze-host='${data.shelly}.hostname'
                     ></div>
                 </ul>
             `);

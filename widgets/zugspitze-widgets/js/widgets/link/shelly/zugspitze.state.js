@@ -20,10 +20,15 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
 
         try {
             let $this = $(el);
+
+            if (!$this.length) {
+                return setTimeout(function () {
+                    vis.binds["zugspitze-widgets"].linkshellystate.createWidget(el, data);
+                }, 100);
+            }
+
             let host = data.host;
             vis.conn.getStates(host, (error, states) => {
-                console.log('HOST: ' + host);
-                console.log('STATES: ' + states);
                 let stateValue = states[host].val;
                 $this.html(`
                     <li class="shelly-admin-link list-group-item pt-0 pb-4">
@@ -38,12 +43,6 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
                     </li>
                 `);
             });
-
-            if (!$this.length) {
-                return setTimeout(function () {
-                    vis.binds["zugspitze-widgets"].linkshellystate.createWidget(el, data);
-                }, 100);
-            }
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
