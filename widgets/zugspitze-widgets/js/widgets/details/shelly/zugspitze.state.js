@@ -1,7 +1,7 @@
 /*
     ioBroker.vis zugspitze-widgets Widget-Set
 
-    version: "0.0.52"
+    version: "0.0.50"
 
     Copyright 2023 MonkeyParson pfaffe.st@gmail.com
 */
@@ -20,7 +20,6 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
     createWidget: function (el, data) {
         let widgetName = 'Details Shelly State';
         let logPrefix = `[Details Shelly State - ${data.wid}] initialize:`;
-        const host = vis.conn.getState(data.shelly + '.hostname').val;
 
         try {
             let $this = $(el);
@@ -65,7 +64,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                         zugspitze-label='Betriebszeit'
                     ></div>
                     <div class="zugspitze-link-shelly-state-html-element"
-                        zugspitze-host='${host}'
+                        zugspitze-host='{${data.shelly}.hostname}'
                     ></div>
                 </ul>
             `);
