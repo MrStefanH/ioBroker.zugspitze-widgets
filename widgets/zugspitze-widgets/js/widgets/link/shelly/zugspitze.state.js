@@ -14,57 +14,34 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
             debug: obj.debug
         }
     },
-    checkValue($element, stateValue) {
-        return $element.html(`
-            <li class="shelly-admin-link list-group-item pt-0 pb-4">
-                <div class='materialdesign-button-html-element'
-                    mdw-type='link_vertical'
-                    mdw-debug='false'
-                    mdw-href='http://${stateValue}'
-                    mdw-openNewWindow='true'
-                    mdw-vibrateOnMobilDevices='50'
-                    mdw-buttontext='Shelly Admin'
-                ></div>
-            </li>
-        `);
-    },
     createWidget: function (el, data) {
         let widgetName = 'Link Shelly State';
         let logPrefix = `[Link Shelly State - ${data.wid}] initialize:`;
-        const host = data.host;
 
         try {
             let $this = $(el);
+            let host = data.host;
+            vis.conn.getStates(host, (error, states) => {
+                let stateValue = states[host].val;
+                $this.html(`
+                    <li class="shelly-admin-link list-group-item pt-0 pb-4">
+                        <div class='materialdesign-button-html-element'
+                            mdw-type='link_vertical'
+                            mdw-debug='false'
+                            mdw-href='http://${stateValue}'
+                            mdw-openNewWindow='true'
+                            mdw-vibrateOnMobilDevices='50'
+                            mdw-buttontext='Shelly Admin'
+                        ></div>
+                    </li>
+                `);
+            });
 
             if (!$this.length) {
                 return setTimeout(function () {
                     vis.binds["zugspitze-widgets"].linkshellystate.createWidget(el, data);
                 }, 100);
             }
-
-            $this.html(`
-                <li class="shelly-admin-link list-group-item pt-0 pb-4">
-                    <div class='materialdesign-button-html-element'
-                        mdw-type='link_vertical'
-                        mdw-debug='false'
-                        mdw-href='http://${host}'
-                        mdw-openNewWindow='true'
-                        mdw-vibrateOnMobilDevices='50'
-                        mdw-buttontext='Shelly Admin'
-                    ></div>
-                </li>
-            `);
-
-            function onChange(e, newVal, oldVal) {
-                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].linkshellystate.checkValue($this, newVal);
-            }
-            
-            vis.states.bind(hos + '.val', onChange);
-            //remember bound state that vis can release if didnt needed
-			$this.data('bound', [host + '.val']);
-			//remember onchange handler to release bound states
-			$this.data('bindHandler', onChange);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
