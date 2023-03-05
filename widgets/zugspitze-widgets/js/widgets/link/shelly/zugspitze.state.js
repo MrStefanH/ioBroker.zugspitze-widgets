@@ -17,6 +17,7 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
     createWidget: function (el, data) {
         let widgetName = 'Link Shelly State';
         let logPrefix = `[Link Shelly State - ${data.wid}] initialize:`;
+        const host = data.host;
 
         try {
             let $this = $(el);
@@ -32,7 +33,7 @@ vis.binds["zugspitze-widgets"].linkshellystate = {
                     <div class='materialdesign-button-html-element'
                         mdw-type='link_vertical'
                         mdw-debug='false'
-                        mdw-href='http://{${data.host}}'
+                        mdw-href='https://{${host}}'
                         mdw-openNewWindow='true'
                         mdw-vibrateOnMobilDevices='50'
                         mdw-buttontext='Shelly Admin'
