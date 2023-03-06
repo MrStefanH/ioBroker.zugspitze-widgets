@@ -46,3 +46,70 @@
     cursor: pointer;
     font-weight: bold;
 }
+
+.switch {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: 0;
+    margin-bottom: 0;
+    padding: 2px;
+    width: 89px;
+    height: 50px;
+    background-color: none;
+    border-radius: 32px;
+    will-change: background-color;
+    transition: background-color .3s;
+}
+
+.switch:after, .switch:before {
+    display: block;
+    position: absolute;
+    content: "";
+}
+
+.switch:before {
+    top: 2px;
+    left: 8px;
+    bottom: 2px;
+    right: 2px;
+    border-radius: 28px;
+    border: 1px solid rgba(83,99,115,.5);
+    color: rgba(83,99,115,.5);
+    line-height: 44px;
+    vertical-align: middle;
+    font-size: 12px;
+    text-align: right;
+    text-indent: 20px;
+    content: "AUS";
+    padding-right: 7px;
+}  
+
+.switch:after {
+    top: 6px;
+    left: 12px;
+    bottom: 6px;
+    width: 38px;
+    background-color: rgba(83,99,115,.5);
+    border-radius: 20px;
+    -webkit-transform: translate(0);
+    transform: translate(0);
+    will-change: transform;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s,-webkit-transform .3s;
+}
+
+.switch.checked:after {
+    -webkit-transform: translate(22px);
+    transform: translate(22px);
+    background-color: #ff7f5f;
+    left: 23px;
+}
+
+.switch.checked:before {
+    color: #ff7f5f;
+    text-indent: -20px;
+    content: "AN";
+    padding-right: 48px;
+}
