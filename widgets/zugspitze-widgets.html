@@ -30,6 +30,7 @@
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/switch/light/zugspitze.state.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/button/more/zugspitze.state.js"></script>
 <script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/card/body/zugspitze.state.js"></script>
+<script type="text/javascript" src="widgets/zugspitze-widgets/js/widgets/card/zugspitze.state.js"></script>
 
 <!-- the full description of format in data-vis-attrs can be found here:
     https://github.com/ioBroker/ioBroker.vis/blob/master/www/js/visEditInspect.js#L39
@@ -323,4 +324,16 @@
         data-vis-attrs="oid/id;">
 
         <div class="vis-widget zugspitze-widget zugspitze-card-body-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].cardbodystate.createWidget(el, this.data) %>></div>
+</script>
+
+<script id="tplZugspitze-widgets-card-state"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-prev=''
+        data-vis-set="zugspitze-widgets"
+        data-vis-type="val,state,string,number,bool,basic"
+        data-vis-name="Card State"
+        data-vis-attrs="oid/id;">
+
+        <div class="vis-widget zugspitze-widget zugspitze-card-state <%== this.data.attr('class') %>" id="<%= this.data.attr('wid') %>" <%= (el) -> vis.binds["zugspitze-widgets"].cardstate.createWidget(el, this.data) %>></div>
 </script>
