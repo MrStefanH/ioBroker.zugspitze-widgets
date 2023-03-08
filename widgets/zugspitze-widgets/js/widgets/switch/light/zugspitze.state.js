@@ -11,7 +11,8 @@ vis.binds["zugspitze-widgets"].switchlightstate = {
     getDataFromJson(obj) {
         return {
             oid: obj.oid,
-            debug: obj.debug
+            debug: obj.debug,
+            active: obj.active
         }
     },
     checkValue($element, stateValue) {
@@ -36,8 +37,9 @@ vis.binds["zugspitze-widgets"].switchlightstate = {
                 }, 100);
             }
 
-            $this.html(`
-                <label class="switch">
+            let template = '';
+            if (data.active) {
+                template = `
                     <div class='materialdesign-checkbox-html-element'
                         style='width: 100%; height: 50px; position: relative; overflow: visible !important; display: flex; align-items: center; display:none;'
                         mdw-oid='${data.oid}'
@@ -49,6 +51,11 @@ vis.binds["zugspitze-widgets"].switchlightstate = {
                         mdw-labelPosition='right'
                         mdw-labelClickActive='true'
                     ></div>
+                `;
+            }
+            $this.html(`
+                <label class="switch">
+                    ${template}
                 </label>
             `);
 
@@ -81,7 +88,8 @@ $.initialize(".zugspitze-switch-light-state-html-element", function () {
         zugspitzeHelper.extractHtmlWidgetData(
             $this,
             vis.binds["zugspitze-widgets"].switchlightstate.getDataFromJson({
-                debug: false
+                debug: false,
+                active: true
             }),
             logPrefix,
             initializeHtml

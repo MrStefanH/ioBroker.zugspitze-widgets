@@ -180,4 +180,9 @@
 .disabled-box {
     background: linear-gradient(to top right, #fff calc(50% - 1px), red , #fff calc(50% + 1px));
     cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.disabled-box .switch {
+    cursor: not-allowed !important;   
 }
