@@ -55,7 +55,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
             }
 
             const reachableDatapoint = data.nettools + '.alive' + '.val';
-            vis.conn.getStates(host, (error, states) => {
+            vis.conn.getStates(reachableDatapoint, (error, states) => {
                 let stateValue = states[host].val;
                 vis.binds["zugspitze-widgets"].cardstate.checkValue($this, stateValue);
             });
