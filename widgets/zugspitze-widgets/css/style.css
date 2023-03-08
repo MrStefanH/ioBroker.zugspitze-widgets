@@ -118,6 +118,7 @@
     padding: 0 !important;
     width: auto !important;
     margin: 0 0.25rem;
+    background: none !important;
 }
 
 .accordion-button:not(.collapsed) {
