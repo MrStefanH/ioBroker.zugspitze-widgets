@@ -37,7 +37,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
             </div>
         `);
     },
-    checkValue($element, stateValue) {
+    checkValue($element, stateValue, data) {
         data.reachable = stateValue;
         vis.binds["zugspitze-widgets"].cardstate.createHtml($element, data);
     },
@@ -57,12 +57,12 @@ vis.binds["zugspitze-widgets"].cardstate = {
             const reachableDatapoint = data.nettools + '.alive';
             vis.conn.getStates(reachableDatapoint, (error, states) => {
                 let stateValue = states[reachableDatapoint].val;
-                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, stateValue);
+                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, stateValue, data);
             });
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, newVal);
+                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, newVal, data);
             }
             
             const reachableDatapointValue = reachableDatapoint + '.val';
