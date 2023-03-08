@@ -46,7 +46,7 @@ vis.binds["zugspitze-widgets"].cardbodystate = {
                     ${errorTemplate}
                     <div class="zugspitze-switch-light-state-html-element"
                         zugspitze-oid='${data.oid}'
-                        zuspitze-active='${data.reachable}'
+                        zugspitze-active='${data.reachable}'
                     ></div>
                 </div> 
             `);
