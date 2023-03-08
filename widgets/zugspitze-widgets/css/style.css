@@ -186,3 +186,10 @@
 .disabled-box .switch {
     cursor: not-allowed !important;   
 }
+
+.error-card-state {
+    color: red;
+    font-weight: bold;
+    transform: rotate(12deg);
+    text-align: center;
+}

@@ -30,6 +30,10 @@ vis.binds["zugspitze-widgets"].cardbodystate = {
                 }, 100);
             }
 
+            let errorTemplate = '';
+            if (!data.reachable) {
+                errorTemplate = '<div class="error-card-state">NICHT<br />VERFÜGBAR</div>'
+            }
             $this.html(`
                 <div class="card-body d-flex flex-row justify-content-between align-items-center ${!data.reachable ? 'disabled-box' : ''}">
                     <div>
@@ -39,7 +43,7 @@ vis.binds["zugspitze-widgets"].cardbodystate = {
                             zugspitze-id='${data.id}'
                         ></div>
                     </div>
-                    
+                    ${errorTemplate}
                     <div class="zugspitze-switch-light-state-html-element"
                         zugspitze-oid='${data.oid}'
                         zuspitze-active='${data.reachable}'
