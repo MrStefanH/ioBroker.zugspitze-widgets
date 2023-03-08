@@ -54,7 +54,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
                 }, 100);
             }
 
-            const reachableDatapoint = data.nettools + '.alive' + '.val';
+            const reachableDatapoint = data.nettools + '.alive';
             vis.conn.getStates(reachableDatapoint, (error, states) => {
                 let stateValue = states[reachableDatapoint].val;
                 vis.binds["zugspitze-widgets"].cardstate.checkValue($this, stateValue);
@@ -65,9 +65,10 @@ vis.binds["zugspitze-widgets"].cardstate = {
                 vis.binds["zugspitze-widgets"].cardstate.checkValue($this, newVal);
             }
             
-            vis.states.bind(reachableDatapoint, onChange);
+            const reachableDatapointValue = reachableDatapoint + '.val';
+            vis.states.bind(reachableDatapointValue, onChange);
             //remember bound state that vis can release if didnt needed
-			$this.data('bound', [reachableDatapoint]);
+			$this.data('bound', [reachableDatapointValue]);
 			//remember onchange handler to release bound states
 			$this.data('bindHandler', onChange);
         } catch (ex) {
