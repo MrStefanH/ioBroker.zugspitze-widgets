@@ -172,3 +172,7 @@
     color: #536373;
     display: flex;
 }
+
+.borderless, .borderless li {
+    border: 0 none!important;
+}
