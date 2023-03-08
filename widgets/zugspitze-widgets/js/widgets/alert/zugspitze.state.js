@@ -51,6 +51,11 @@ vis.binds["zugspitze-widgets"].alertstate = {
                 ></div>
             `);
 
+            vis.conn.getStates(data.oid, (error, states) => {
+                let stateValue = states[data.oid].val;
+                vis.binds["zugspitze-widgets"].alertstate.checkValue($this, stateValue, data.switchState);
+            });
+
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
                 vis.binds["zugspitze-widgets"].alertstate.checkValue($this, newVal, data.switchState);
