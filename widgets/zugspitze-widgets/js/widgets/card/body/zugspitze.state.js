@@ -13,7 +13,8 @@ vis.binds["zugspitze-widgets"].cardbodystate = {
             label: obj.label,
             debug: obj.debug,
             id: obj.id,
-            oid: obj.oid
+            oid: obj.oid,
+            reachable: obj.reachable
         }
     },
     createWidget: function (el, data) {
@@ -30,7 +31,7 @@ vis.binds["zugspitze-widgets"].cardbodystate = {
             }
 
             $this.html(`
-                <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                <div class="card-body d-flex flex-row justify-content-between align-items-center ${!data.reachable ? 'disabled-box' : ''}">
                     <div>
                         <h5>${data.label}</h5>
                         <div class="zugspitze-button-more-state-html-element"

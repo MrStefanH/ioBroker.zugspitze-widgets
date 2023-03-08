@@ -19,6 +19,28 @@ vis.binds["zugspitze-widgets"].cardstate = {
             shelly: obj.shelly
         }
     },
+    createHtml: function ($element, data) {
+        $element.html(`
+            <div class="card active" data-unit="switch-light-1">
+                <div class="zugspitze-card-body-state-html-element"
+                    zugspitze-oid='${data.oid}'
+                    zugspitze-label='${data.label}'
+                    zugspitze-id='${data.id}'
+                ></div>
+                <hr class="my-0">
+                <div class="zugspitze-details-shelly-state-html-element"
+                    zugspitze-shelly='${data.shelly}'
+                    zugspitze-shellyRelay='${data.shellyRelay}'
+                    zugspitze-nettools='${data.nettools}'
+                    zugspitze-id='${data.id}'
+                ></div>
+            </div>
+        `);
+    },
+    checkValue($element, stateValue) {
+        data.reachable = stateValue;
+        vis.binds["zugspitze-widgets"].cardstate.createHtml($element, data);
+    },
     createWidget: function (el, data) {
         let widgetName = 'Card State';
         let logPrefix = `[Card State - ${data.wid}] initialize:`;
@@ -32,22 +54,22 @@ vis.binds["zugspitze-widgets"].cardstate = {
                 }, 100);
             }
 
-            $this.html(`
-                <div class="card active" data-unit="switch-light-1">
-                    <div class="zugspitze-card-body-state-html-element"
-                        zugspitze-oid='${data.oid}'
-                        zugspitze-label='${data.label}'
-                        zugspitze-id='${data.id}'
-                    ></div>
-                    <hr class="my-0">
-                    <div class="zugspitze-details-shelly-state-html-element"
-                        zugspitze-shelly='${data.shelly}'
-                        zugspitze-shellyRelay='${data.shellyRelay}'
-                        zugspitze-nettools='${data.nettools}'
-                        zugspitze-id='${data.id}'
-                    ></div>
-                </div>
-            `);
+            const reachableDatapoint = data.nettools + '.alive' + '.val';
+            vis.conn.getStates(host, (error, states) => {
+                let stateValue = states[host].val;
+                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, stateValue);
+            });
+
+            function onChange(e, newVal, oldVal) {
+                if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
+                vis.binds["zugspitze-widgets"].cardstate.checkValue($this, newVal);
+            }
+            
+            vis.states.bind(reachableDatapoint, onChange);
+            //remember bound state that vis can release if didnt needed
+			$this.data('bound', [reachableDatapoint]);
+			//remember onchange handler to release bound states
+			$this.data('bindHandler', onChange);
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }

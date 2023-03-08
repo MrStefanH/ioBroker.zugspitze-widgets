@@ -176,3 +176,8 @@
 .borderless, .borderless li {
     border: 0 none!important;
 }
+
+.disabled-box {
+    background: linear-gradient(to top right, #fff calc(50% - 1px), red , #fff calc(50% + 1px));
+    cursor: not-allowed;
+}
