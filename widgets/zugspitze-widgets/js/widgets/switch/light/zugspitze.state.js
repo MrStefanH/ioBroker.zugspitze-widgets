@@ -61,12 +61,12 @@ vis.binds["zugspitze-widgets"].switchlightstate = {
 
             vis.conn.getStates(data.oid, (error, states) => {
                 let stateValue = states[data.oid].val;
-                vis.binds["zugspitze-widgets"].switchlightstate.checkValue($this, stateValue);
+                vis.binds["zugspitze-widgets"].switchlightstate.checkValue($this, stateValue && data.active);
             });
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
-                vis.binds["zugspitze-widgets"].switchlightstate.checkValue($this, newVal);
+                vis.binds["zugspitze-widgets"].switchlightstate.checkValue($this, newVal && data.active);
             }
             
             vis.states.bind(data.oid + '.val', onChange);
