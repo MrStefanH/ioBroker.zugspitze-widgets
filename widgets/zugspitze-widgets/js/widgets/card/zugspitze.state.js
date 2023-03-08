@@ -26,6 +26,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
                     zugspitze-oid='${data.oid}'
                     zugspitze-label='${data.label}'
                     zugspitze-id='${data.id}'
+                    zugspitze-reachable='${data.reachable}'
                 ></div>
                 <hr class="my-0">
                 <div class="zugspitze-details-shelly-state-html-element"
