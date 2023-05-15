@@ -31,7 +31,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
                 ></div>
                 <hr class="my-0">
                 <div class="zugspitze-details-shelly-state-html-element"
-                    zugspitze-deviceAlias='${data.deviceAliases}'
+                    zugspitze-deviceAlias='${data.deviceAlias}'
                 ></div>
             </div>
         `);
