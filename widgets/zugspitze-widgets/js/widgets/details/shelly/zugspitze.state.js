@@ -28,7 +28,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
             }
 
             $this.html(`
-                <ul class="list-group borderless px-1 collapse" id="flush-collapse-${data.id}">
+                <ul class="list-group borderless px-1 collapse" id="flush-collapse-${data.deviceAlias.id}">
                     <div class="zugspitze-temperature-list-item-html-element"
                         zugspitze-oid='${data.deviceAlias}.temperature'
                         zugspitze-label='Temperatur'
@@ -45,7 +45,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                         zugspitze-label='Verbindung'
                     ></div>
                     <div class="zugspitze-type-shelly-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.id'
+                        zugspitze-oid='${data.deviceAlias}.type'
                         zugspitze-label='Typ'
                     ></div>
                     <div class="zugspitze-consumption-current-list-item-html-element"
