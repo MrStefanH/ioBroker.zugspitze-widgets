@@ -10,10 +10,7 @@
 vis.binds["zugspitze-widgets"].detailsshellystate = {
     getDataFromJson(obj) {
         return {
-            id: obj.id,
-            shelly: obj.shelly,
-            shellyRelay: obj.shellyRelay,
-            nettools: obj.nettools,
+            deviceAlias: obj.deviceAlias,
             debug: obj.debug
         }
     },
@@ -33,38 +30,38 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
             $this.html(`
                 <ul class="list-group borderless px-1 collapse" id="flush-collapse-${data.id}">
                     <div class="zugspitze-temperature-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.temperatureC'
+                        zugspitze-oid='${data.deviceAlias}.temperature'
                         zugspitze-label='Temperatur'
                     ></div>
                     <div class="zugspitze-alert-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.overtemperature'
+                        zugspitze-oid='${data.deviceAlias}.overtemperature'
                         zugspitze-label='Übertemperatur'
                         zugspitze-switchState='true'
                         zugspitze-textOnTrue='ZU WARM'
                         zugspitze-textOnFalse='OK'
                     ></div>
                     <div class="zugspitze-alert-list-item-html-element"
-                        zugspitze-oid='${data.nettools}.alive'
+                        zugspitze-oid='${data.deviceAlias}.reachable'
                         zugspitze-label='Verbindung'
                     ></div>
                     <div class="zugspitze-type-shelly-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.id'
+                        zugspitze-oid='${data.deviceAlias}.id'
                         zugspitze-label='Typ'
                     ></div>
                     <div class="zugspitze-consumption-current-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.${data.shellyRelay}.Power'
+                        zugspitze-oid='${data.deviceAlias}.currentPower'
                         zugspitze-label='Aktueller Verbrauch'
                     ></div>
                     <div class="zugspitze-consumption-overall-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.${data.shellyRelay}.Energy'
+                        zugspitze-oid='${data.deviceAlias}.overallEnergy'
                         zugspitze-label='Gesamtverbrauch'
                     ></div>
                     <div class="zugspitze-uptime-list-item-html-element"
-                        zugspitze-oid='${data.shelly}.uptime'
+                        zugspitze-oid='${data.deviceAlias}.uptime'
                         zugspitze-label='Betriebszeit'
                     ></div>
                     <div class="zugspitze-link-shelly-state-html-element"
-                        zugspitze-host='${data.shelly}.hostname'
+                        zugspitze-host='${data.deviceAlias}.hostname'
                     ></div>
                 </ul>
             `);

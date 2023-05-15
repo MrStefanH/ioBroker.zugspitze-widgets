@@ -16,7 +16,8 @@ vis.binds["zugspitze-widgets"].cardstate = {
             oid: obj.oid,
             nettools: obj.nettools,
             shellyRelay: obj.shellyRelay,
-            shelly: obj.shelly
+            shelly: obj.shelly,
+            deviceAlias: obj.deviceAlias
         }
     },
     createHtml: function ($element, data) {
@@ -30,10 +31,7 @@ vis.binds["zugspitze-widgets"].cardstate = {
                 ></div>
                 <hr class="my-0">
                 <div class="zugspitze-details-shelly-state-html-element"
-                    zugspitze-shelly='${data.shelly}'
-                    zugspitze-shellyRelay='${data.shellyRelay}'
-                    zugspitze-nettools='${data.nettools}'
-                    zugspitze-id='${data.id}'
+                    zugspitze-deviceAlias='${data.deviceAliases}'
                 ></div>
             </div>
         `);
