@@ -27,44 +27,48 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                 }, 100);
             }
 
-            $this.html(`
-                <ul class="list-group borderless px-1 collapse" id="flush-collapse-${data.deviceAlias.id}">
-                    <div class="zugspitze-temperature-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.temperature'
-                        zugspitze-label='Temperatur'
-                    ></div>
-                    <div class="zugspitze-alert-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.overtemperature'
-                        zugspitze-label='Übertemperatur'
-                        zugspitze-switchState='true'
-                        zugspitze-textOnTrue='ZU WARM'
-                        zugspitze-textOnFalse='OK'
-                    ></div>
-                    <div class="zugspitze-alert-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.reachable'
-                        zugspitze-label='Verbindung'
-                    ></div>
-                    <div class="zugspitze-type-shelly-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.type'
-                        zugspitze-label='Typ'
-                    ></div>
-                    <div class="zugspitze-consumption-current-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.currentPower'
-                        zugspitze-label='Aktueller Verbrauch'
-                    ></div>
-                    <div class="zugspitze-consumption-overall-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.overallEnergy'
-                        zugspitze-label='Gesamtverbrauch'
-                    ></div>
-                    <div class="zugspitze-uptime-list-item-html-element"
-                        zugspitze-oid='${data.deviceAlias}.uptime'
-                        zugspitze-label='Betriebszeit'
-                    ></div>
-                    <div class="zugspitze-link-shelly-state-html-element"
-                        zugspitze-host='${data.deviceAlias}.hostname'
-                    ></div>
-                </ul>
-            `);
+            let id = data.deviceAlias.id;
+            vis.conn.getStates(id, (error, states) => {
+                let stateValue = states[id].val;
+                $this.html(`
+                    <ul class="list-group borderless px-1 collapse" id="flush-collapse-${stateValue}">
+                        <div class="zugspitze-temperature-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.temperature'
+                            zugspitze-label='Temperatur'
+                        ></div>
+                        <div class="zugspitze-alert-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.overtemperature'
+                            zugspitze-label='Übertemperatur'
+                            zugspitze-switchState='true'
+                            zugspitze-textOnTrue='ZU WARM'
+                            zugspitze-textOnFalse='OK'
+                        ></div>
+                        <div class="zugspitze-alert-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.reachable'
+                            zugspitze-label='Verbindung'
+                        ></div>
+                        <div class="zugspitze-type-shelly-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.type'
+                            zugspitze-label='Typ'
+                        ></div>
+                        <div class="zugspitze-consumption-current-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.currentPower'
+                            zugspitze-label='Aktueller Verbrauch'
+                        ></div>
+                        <div class="zugspitze-consumption-overall-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.overallEnergy'
+                            zugspitze-label='Gesamtverbrauch'
+                        ></div>
+                        <div class="zugspitze-uptime-list-item-html-element"
+                            zugspitze-oid='${data.deviceAlias}.uptime'
+                            zugspitze-label='Betriebszeit'
+                        ></div>
+                        <div class="zugspitze-link-shelly-state-html-element"
+                            zugspitze-host='${data.deviceAlias}.hostname'
+                        ></div>
+                    </ul>
+                `);
+            });
         } catch (ex) {
             console.error(`[${widgetName} - ${data.wid}] initialize: error: ${ex.message}, stack: ${ex.stack}`);
         }
