@@ -1,6 +1,6 @@
 {
   "name": "iobroker.zugspitze-widgets",
-  "version": "0.0.77",
+  "version": "0.0.78",
   "description": "Provides some widgets for personal use extending material design widgets",
   "author": {
     "name": "MonkeyParson",
