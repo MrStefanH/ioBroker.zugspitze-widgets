@@ -190,6 +190,6 @@
 .error-card-state {
     color: red;
     font-weight: bold;
-    transform: rotate(12deg);
+    transform: rotate(11deg);
     text-align: center;
 }
