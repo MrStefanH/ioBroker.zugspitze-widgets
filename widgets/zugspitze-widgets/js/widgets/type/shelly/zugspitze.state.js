@@ -45,7 +45,13 @@ vis.binds["zugspitze-widgets"].typeshellystate = {
                     mdw-textAlign='start'
                 ></div>
             `);
-            vis.binds["zugspitze-widgets"].typeshellystate.updateType($this, newVal);
+
+            
+            vis.conn.getStates(data.oid, (error, states) => {
+                let stateValue = states[data.oid].val;
+                vis.binds["zugspitze-widgets"].typeshellystate.updateType($this, stateValue);
+            });
+            
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
                 vis.binds["zugspitze-widgets"].typeshellystate.updateType($this, newVal);
