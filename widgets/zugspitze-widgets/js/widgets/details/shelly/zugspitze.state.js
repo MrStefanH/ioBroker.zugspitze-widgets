@@ -27,7 +27,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                 }, 100);
             }
 
-            let id = data.deviceAlias.id;
+            let id = data.deviceAlias + '.id';
             vis.conn.getStates(id, (error, states) => {
                 let stateValue = states[id].val;
                 $this.html(`
