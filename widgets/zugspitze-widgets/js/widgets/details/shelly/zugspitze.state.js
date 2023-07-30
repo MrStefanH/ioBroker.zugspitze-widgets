@@ -36,13 +36,15 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                             zugspitze-oid='${data.deviceAlias}.temperature'
                             zugspitze-label='Temperatur'
                         ></div>
-                        <div class="zugspitze-alert-list-item-html-element"
-                            zugspitze-oid='${data.deviceAlias}.overtemperature'
-                            zugspitze-label='Übertemperatur'
-                            zugspitze-switchState='true'
-                            zugspitze-textOnTrue='ZU WARM'
-                            zugspitze-textOnFalse='OK'
-                        ></div>
+                        ${typeof data.deviceAlias + '.overtemperature' ? 
+                            `<div class="zugspitze-alert-list-item-html-element"
+                                zugspitze-oid='${data.deviceAlias}.overtemperature'
+                                zugspitze-label='Übertemperatur'
+                                zugspitze-switchState='true'
+                                zugspitze-textOnTrue='ZU WARM'
+                                zugspitze-textOnFalse='OK'
+                            ></div>` 
+                        : ''}
                         <div class="zugspitze-alert-list-item-html-element"
                             zugspitze-oid='${data.deviceAlias}.reachable'
                             zugspitze-label='Verbindung'
