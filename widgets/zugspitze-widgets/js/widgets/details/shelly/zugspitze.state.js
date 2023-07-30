@@ -30,13 +30,14 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
             let id = data.deviceAlias + '.id';
             vis.conn.getStates(id, (error, states) => {
                 let stateValue = states[id].val;
+                let overTemperature = data.deviceAlias + '.overtemperature';
                 $this.html(`
                     <ul class="list-group borderless collapse" id="flush-collapse-${stateValue}">
                         <div class="zugspitze-temperature-list-item-html-element"
                             zugspitze-oid='${data.deviceAlias}.temperature'
                             zugspitze-label='Temperatur'
                         ></div>
-                        ${typeof data.deviceAlias + '.overtemperature' !== 'undefined' ? 
+                        ${typeof overTemperature !== 'undefined' ? 
                             `<div class="zugspitze-alert-list-item-html-element"
                                 zugspitze-oid='${data.deviceAlias}.overtemperature'
                                 zugspitze-label='Übertemperatur'
