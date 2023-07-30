@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "zugspitze-widgets",
-        "version": "0.0.88",
+        "version": "0.0.89",
         "news": {
             "0.0.1": {
                 "en": "initial release",
