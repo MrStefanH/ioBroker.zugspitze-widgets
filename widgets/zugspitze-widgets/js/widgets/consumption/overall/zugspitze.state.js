@@ -54,16 +54,11 @@ vis.binds["zugspitze-widgets"].consumptionoverallstate = {
                 }, 100);
             }
 
-            $this.html(`
-                <div class="ml-auto mb-0 materialdesign-value-html-element"
-                    mdw-debug='${data.debug}'
-                    mdw-oid='${data.oid}'
-                    mdw-targetType='auto'
-                    mdw-value='20'
-                    mdw-textAlign='start'
-                    mdw-valueLabelUnit='Wh'
-                ></div>
-            `);
+            const consumptionDatapoint = data.oid;
+            vis.conn.getStates(consumptionDatapoint, (error, states) => {
+                let stateValue = states[consumptionDatapoint].val;
+                vis.binds["zugspitze-widgets"].consumptionoverallstate.checkValue($this, stateValue, data);
+            });
 
             function onChange(e, newVal, oldVal) {
                 if (data.debug) console.log(`${logPrefix} [initialize] new value from binding: ${newVal}`);
