@@ -20,6 +20,8 @@ vis.binds["zugspitze-widgets"].typeshellystate = {
             type = 'Shelly PM Gen1';
         } else if (stateValue.includes('SHSW-25')) {
             type = 'Shelly 2.5 Gen1';
+        } else if (stateValue.includes('shellyplus1pm')) {
+            type = 'Shelly Plus PM Gen2';
         }
        
         return $element.prepend(`<label>${type}</label>`);
