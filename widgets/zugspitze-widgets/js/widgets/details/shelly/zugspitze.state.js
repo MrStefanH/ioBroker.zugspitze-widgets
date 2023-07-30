@@ -38,7 +38,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                             zugspitze-oid='${data.deviceAlias}.temperature'
                             zugspitze-label='Temperatur'
                         ></div>
-                        ${typeof overTemperatureValue !== 'undefined' ? 
+                        ${overTemperature in states ? 
                             `<div class="zugspitze-alert-list-item-html-element"
                                 zugspitze-oid='${data.deviceAlias}.overtemperature'
                                 zugspitze-label='Übertemperatur'
@@ -46,7 +46,7 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
                                 zugspitze-textOnTrue='ZU WARM'
                                 zugspitze-textOnFalse='OK'
                             ></div>` 
-                        : ''}
+                        : 'Test'}
                         <div class="zugspitze-alert-list-item-html-element"
                             zugspitze-oid='${data.deviceAlias}.reachable'
                             zugspitze-label='Verbindung'
