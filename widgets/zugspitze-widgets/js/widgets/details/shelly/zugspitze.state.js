@@ -32,14 +32,13 @@ vis.binds["zugspitze-widgets"].detailsshellystate = {
             vis.conn.getStates(id, async (error, states) => {
                 let stateValue = states[id].val;
                 let overTemperatureValue = await zugspitzeHelper.getStateAsync(overTemperature);
-                console.error('ASYNC VALUE ' + overTemperatureValue);
                 $this.html(`
                     <ul class="list-group borderless collapse" id="flush-collapse-${stateValue}">
                         <div class="zugspitze-temperature-list-item-html-element"
                             zugspitze-oid='${data.deviceAlias}.temperature'
                             zugspitze-label='Temperatur'
                         ></div>
-                        ${overTemperature in vis.states ? 
+                        ${overTemperatureValue !== null ? 
                             `<div class="zugspitze-alert-list-item-html-element"
                                 zugspitze-oid='${data.deviceAlias}.overtemperature'
                                 zugspitze-label='Übertemperatur'
