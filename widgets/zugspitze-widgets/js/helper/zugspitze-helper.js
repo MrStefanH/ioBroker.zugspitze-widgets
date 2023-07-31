@@ -35,7 +35,18 @@ vis.binds["zugspitze-widgets"].helper = {
 
             return value;
         }
-    }
+    },
+    async getStateAsync(id) {
+        return new Promise((resolve, reject) => {
+            vis.conn._socket.emit('getState', id, function (err, res) {
+                if (!err && res) {
+                    resolve(res);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    },
 };
 
 let zugspitzeHelper = vis.binds["zugspitze-widgets"].helper;
